@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H.K.M - Digital Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="logo">
+            <span class="h">H</span>.<span class="k">K</span>.<span class="m">M</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#work">Our Work</a></li> 
+            <li><a href="#" id="aboutBtn">About Us</a></li>
+        </ul> 
+    </nav>
+
+    <header class="hero">
+        <div class="tech-marquee">
+            <div class="marquee-content">
+                <span>⚙️ Custom Admin Dashboards</span>
+                <span>🛒 E-commerce Solutions</span>
+                <span>🎨 UI/UX Design</span>
+                <span>📸 High-Quality Media</span>
+                
+                <span>⚙️ Custom Admin Dashboards</span>
+                <span>🛒 E-commerce Solutions</span>
+                <span>🎨 UI/UX Design</span>
+                <span>📸 High-Quality Media</span>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>WELCOME TO<br>H.K.M STUDIO</h1>
+            <p>Where code, design, and motion collide to build your digital presence.</p>
+        </div>
+    </header>
+
+    <section class="bento-section" id="work">
+        <h2>OUR WORK</h2>
+        <div class="bento-grid">
+            
+            <a href="websites.html" class="bento-item bento-large">
+                <div class="bento-content">
+                    <div class="icon">💻</div>
+                    <h3>Web Systems</h3>
+                    <p>Custom Admin Panels & Dashboards</p>
+                </div>
+            </a>
+
+            <a href="videos.html" class="bento-item bento-tall">
+                <div class="bento-content">
+                    <div class="icon">🎬</div>
+                    <h3>Cinematics</h3>
+                    <p>High-end video production</p>
+                </div>
+            </a>
+
+            <a href="photos.html" class="bento-item bento-large">
+                <div class="bento-content">
+                    <div class="icon">📸</div>
+                    <h3>Visuals</h3>
+                    <p>Studio-grade photography</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="about-modal" id="aboutModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>H.K.M <span style="color: #ff3333;">TEAM</span></h2>
+            <p>The minds behind the digital future.</p>
+
+            <div class="team-grid">
+                
+                <div class="team-member">
+                    <h3>Khaled</h3>
+                    <p class="role">Lead Front-End & Visual Artist</p>
+                    <p class="contact">
+                        <a href="https://wa.me/966564841071" target="_blank" class="whatsapp-link">
+                            📞 +966 56 484 1071
+                        </a>
+                    </p>                   
+                </div>
+                
+                <div class="team-member">
+                    <h3>Hamza</h3>
+                    <p class="role">Founder & Web Systems Lead</p>
+                    <p class="contact">
+                        <a href="https://wa.me/201001943736" target="_blank" class="whatsapp-link">
+                            📞 +20 10 0194 3736
+                        </a>
+                    </p>                   
+                </div>
+                
+                <div class="team-member">
+                    <h3>Mahmoud</h3>
+                    <p class="role">Cinematics & Video Editor</p>
+                    <p class="contact">
+                        <a href="https://wa.me/966591746017" target="_blank" class="whatsapp-link">
+                            📞 +966 59 174 6017
+                        </a>
+                    </p>              
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. أكواد نافذة About Us
+        const aboutBtn = document.getElementById('aboutBtn');
+        const aboutModal = document.getElementById('aboutModal');
+        const closeModal = document.getElementById('closeModal');
+
+        aboutBtn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            aboutModal.classList.add('show');
+        });
+
+        closeModal.addEventListener('click', () => {
+            aboutModal.classList.remove('show');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === aboutModal) {
+                aboutModal.classList.remove('show');
+            }
+        });
+
+        // 2. كود تلوين الكلام مع الاسكرول
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.scrollY;
+            let docHeight = document.body.offsetHeight;
+            let winHeight = window.innerHeight;
+            let scrollPercent = scrollTop / (docHeight - winHeight);
+            
+            let scrollPercentRounded = Math.round(scrollPercent * 100);
+            
+            document.documentElement.style.setProperty('--scroll-pos', `${scrollPercentRounded}%`);
+        });
+    </script>
+    
+</body>
+</html>

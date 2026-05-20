@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematics - H.K.M Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theater-body">
+
+    <nav class="navbar theater-nav">
+       <div class="logo">
+            <span class="h">H</span>.<span class="k">K</span>.<span class="m">M</span>
+        </div>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </nav>
+
+    <section class="theater-mode">
+        <div class="theater-header">
+            <h2>CINEMATICS</h2>
+            <p>High-end video production</p>
+        </div>
+
+        <div class="video-grid">
+            
+            <div class="video-card" data-video="1.mp4">
+                <video src="1.mp4" autoplay loop muted playsinline class="video-thumb"></video>
+                <div class="video-overlay">
+                    <div class="play-btn">▶</div>
+                    <h3 class="video-title"></h3>
+                </div>
+            </div>
+
+            <div class="video-card" data-video="2.mp4">
+                <video src="2.mp4" autoplay loop muted playsinline class="video-thumb"></video>
+                <div class="video-overlay">
+                    <div class="play-btn">▶</div>
+                    <h3 class="video-title"></h3>
+                </div>
+            </div>
+            
+            <div class="video-card" data-video="3.mp4">
+                <video src="3.mp4" autoplay loop muted playsinline class="video-thumb"></video>
+                <div class="video-overlay">
+                    <div class="play-btn">▶</div>
+                    <h3 class="video-title"></h3>
+                </div>
+            </div>
+            
+            <div class="video-card" data-video="4.mp4">
+                <video src="4.mp4" autoplay loop muted playsinline class="video-thumb"></video>
+                <div class="video-overlay">
+                    <div class="play-btn">▶</div>
+                    <h3 class="video-title"></h3>
+                </div>
+            </div>
+            
+            <div class="video-card" data-video="5.mp4">
+                <video src="5.mp4" autoplay loop muted playsinline class="video-thumb"></video>
+                <div class="video-overlay">
+                    <div class="play-btn">▶</div>
+                    <h3 class="video-title"></h3>
+                </div>
+            </div>
+            
+            <div class="video-card" data-video="6.mp4">
+                <video src="6.mp4" autoplay loop muted playsinline class="video-thumb"></video>
+                <div class="video-overlay">
+                    <div class="play-btn">▶</div>
+                    <h3 class="video-title"></h3>
+                </div>
+            </div>
+            
+            <div class="video-card" data-video="7.mp4">
+                <video src="7.mp4" autoplay loop muted playsinline class="video-thumb"></video>
+                <div class="video-overlay">
+                    <div class="play-btn">▶</div>
+                    <h3 class="video-title"></h3>
+                </div>
+            </div>
+            
+            <div class="video-card" data-video="8.mp4">
+                <video src="8.mp4" autoplay loop muted playsinline class="video-thumb"></video>
+                <div class="video-overlay">
+                    <div class="play-btn">▶</div>
+                    <h3 class="video-title"></h3>
+                </div>
+            </div>
+        
+        </div>
+    </section>
+
+    <div class="video-modal" id="videoModal">
+        <span class="close-video" id="closeVideo">&times;</span>
+        <div class="video-container">
+            <video id="fullVideoPlayer" controls style="width: 100%; border-radius: 12px;"></video>
+        </div>
+    </div>
+
+    <script>
+        const videoCards = document.querySelectorAll('.video-card');
+        const videoModal = document.getElementById('videoModal');
+        const fullVideoPlayer = document.getElementById('fullVideoPlayer');
+        const closeVideo = document.getElementById('closeVideo');
+
+        // 1. لما تدوس على أي كارت
+        videoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const videoSrc = card.getAttribute('data-video'); // هات اسم الفيديو المظبوط
+                fullVideoPlayer.src = videoSrc; // حطه في الشاشة الكبيرة
+                videoModal.style.display = 'flex'; // أظهر الشاشة الكبيرة
+                
+                // استنى لحظة صغيرة عشان الشاشة تظهر، وبعدين ارفع الـ opacity (عشان الأنيميشن)
+                setTimeout(() => { videoModal.style.opacity = '1'; }, 10);
+                fullVideoPlayer.play(); // شغل الفيديو بالصوت
+            });
+        });
+
+        // 2. كود قفل الشاشة الكبيرة
+        const closeFullVideo = () => {
+            videoModal.style.opacity = '0'; // اختفاء ناعم
+            setTimeout(() => { 
+                videoModal.style.display = 'none'; // اخفيها خالص
+                fullVideoPlayer.pause(); // وقف الفيديو
+                fullVideoPlayer.src = ''; // فضي المشغل عشان الصوت ميستمرش
+            }, 300);
+        };
+
+        // 3. اقفل لما تدوس على علامة X
+        closeVideo.addEventListener('click', closeFullVideo);
+
+        // 4. اقفل لو دوست في أي مكان أسود فاضي
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) closeFullVideo();
+        });
+    </script>
+
+</body>
+</html>
